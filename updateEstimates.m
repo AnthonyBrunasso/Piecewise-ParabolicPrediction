@@ -12,7 +12,6 @@ function [obj, q] = updateEstimates(pp, obs)
   else
     k = f(1) - 1;
   end
-  disp(k);
   # Increment positions of markers k+1 through 5
   pp.n(k + 1:5) += 1;
   # Update desired position for all markers
