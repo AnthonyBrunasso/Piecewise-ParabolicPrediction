@@ -10,8 +10,9 @@ function [obj, q] = updateEstimates(pp, obs)
     k = 1;
     pp.q(1) = obs;
   else
-    k = f(1);
+    k = f(1) - 1;
   end
+  disp(k);
   # Increment positions of markers k+1 through 5
   pp.n(k + 1:5) += 1;
   # Update desired position for all markers
@@ -19,7 +20,8 @@ function [obj, q] = updateEstimates(pp, obs)
   # Adjust heights of markers 2-4 if necessary
   for i = 2:4
     d = pp.np(i) - pp.n(i);
-    if (d >= 1 && pp.n(i + 1) - pp.n(i)) || (d <= -1 && pp.n(i - 1) - pp.n(i) < -1)
+    if (d >= 1 && pp.n(i + 1) - pp.n(i) > 1) || ...
+       (d <= -1 && pp.n(i - 1) - pp.n(i) < -1)
       d = sign(d);
       # Adjust qi using P^2 formula:
       h = parabolicHeight(pp, i, d);
