@@ -29,5 +29,5 @@ end
 %! # TODO: This blows up the stack if it's not transposed, that's dumb
 %! x = rand(10)(:)';
 %! p = pp(0.5, x);
-%! assert(fcmp(p.q(3), quantile(x, 0.5), 1.0));
+%! assert(fcmp(p.q(3), quantile(x, 0.5), 0.1));
 
